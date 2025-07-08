@@ -20,4 +20,31 @@
 /* Page background color */
 .home--mainbody {
 	background-color: var(--dark-grey);
+	padding-top: 10px;
+}
+
+.home--header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+.header--list {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	padding: 10px;
+}
+.header--listelement {
+	list-style: none;
+	display: flex;
+}
+.footer--text {
+	text-align: center;
+	padding-top: 10px;
+	color: var(--lightgray);
+}
+.header--title {
+	color: var(--orange);
 }
