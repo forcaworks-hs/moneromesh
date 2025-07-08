@@ -22,8 +22,11 @@ function load_component(selector, component) {
 		})
 }
 
+// Get current page before calling loaders, form selectors with these page name
+const page_name = document.documentElement.dataset.pagename;
+
 // Fetch header and footer
 document.addEventListener("DOMContentLoaded", () => {
-	load_component("#home-header", "../components/header.html");
-	load_component("#home-footer", "../components/footer.html")
+	load_component(`#${page_name}--header`, "../components/header.html");
+	load_component(`#${page_name}--footer`, "../components/footer.html")
 });
