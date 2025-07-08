@@ -27,6 +27,6 @@ const page_name = document.documentElement.dataset.pagename;
 
 // Fetch header and footer
 document.addEventListener("DOMContentLoaded", () => {
-	load_component(`#${page_name}--header`, "../components/header.html");
-	load_component(`#${page_name}--footer`, "../components/footer.html")
+	load_component(`.${page_name}--header`, "../components/header.html");
+	load_component(`.${page_name}--footer`, "../components/footer.html")
 });
