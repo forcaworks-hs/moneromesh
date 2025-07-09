@@ -21,6 +21,7 @@
 .home--mainbody {
 	background-color: var(--dark-grey);
 	padding-top: 10px;
+	font-family: "Orbitron-Bold";
 }
 
 .home--header {
@@ -29,6 +30,7 @@
 	justify-content: space-between;
 	padding-bottom: 10px;
 	padding-top: 5px;
+	font-family: "Orbitron-Bold";
 }
 .header--list {
 	display: flex;
@@ -44,7 +46,9 @@
 	text-align: center;
 	padding-top: 10px;
 	color: var(--lightgray);
+	font-family: "Orbitron-Bold";
 }
 .header--title {
 	color: var(--orange);
+	font-family: "Orbitron-Bold";
 }
