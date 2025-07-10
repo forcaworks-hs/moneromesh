@@ -29,6 +29,7 @@ html {
 .home--header {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .header--list {
@@ -53,4 +54,5 @@ html {
 .home--footer {
     position: fixed;
     bottom: 0px;
+    width: 100%;
 }
