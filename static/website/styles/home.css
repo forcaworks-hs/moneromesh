@@ -18,41 +18,12 @@
     --white: #ffffff;
 }
 
+/* Make the root element take the 100% of the available viewport's height */
 html {
     height: 100%;
 }
 
+/* Body background */
 .home--mainbody {
     background-color: var(--dark-grey);
-}
-
-.home--header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.header--list {
-    display: flex;
-    flex-direction: row;
-}
-
-.header--listelement {
-	list-style: none;
-}
-
-.footer--text {
-    text-align: center;
-    font-family: "Orbitron-Bold";
-}
-
-.header--title {
-    color: var(--orange);
-    font-family: "Orbitron-Bold";
-}
-
-.home--footer {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
 }
