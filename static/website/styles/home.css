@@ -18,41 +18,28 @@
     --white: #ffffff;
 }
 
+/* Make the root element take the 100% of the available viewport's height */
 html {
     height: 100%;
 }
 
+/* Body background */
 .home--mainbody {
     background-color: var(--dark-grey);
 }
 
+/* Body header */
 .home--header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+	justify-content: space-between;
 }
 
-.header--list {
-    display: flex;
-    flex-direction: row;
-}
-
-.header--listelement {
-	list-style: none;
-}
-
-.footer--text {
-    text-align: center;
-    font-family: "Orbitron-Bold";
-}
-
-.header--title {
-    color: var(--orange);
-    font-family: "Orbitron-Bold";
-}
-
+/* Body footer */
 .home--footer {
     position: fixed;
     bottom: 0px;
+    margin-bottom: 10px;
     width: 100%;
 }
