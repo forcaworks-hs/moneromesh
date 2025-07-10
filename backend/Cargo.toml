@@ -1,5 +1,5 @@
 [package]
-name = "monero-observer-backend"
+name = "moneromesh-backend"
 authors = ["itsgerliz"]
 version = "1.0.0"
 edition = "2021"
