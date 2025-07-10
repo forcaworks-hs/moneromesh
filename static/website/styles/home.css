@@ -27,3 +27,19 @@ html {
 .home--mainbody {
     background-color: var(--dark-grey);
 }
+
+/* Body header */
+.home--header {
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+	justify-content: space-between;
+}
+
+/* Body footer */
+.home--footer {
+    position: fixed;
+    bottom: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+}

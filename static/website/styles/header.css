@@ -1,0 +1,36 @@
+/* Set header logo to 85x85 px */
+.header--logo {
+	width: 85px;
+	height: auto;
+}
+
+/* Make left side a row flexbox */
+.header--left {
+	display: flex;
+	flex-direction: row;
+}
+
+/* Margin the title from the logo and align it vertically to the center */
+.header--title {
+	align-self: center;
+	margin-left: 25px;
+}
+
+/* Make the right side a row flexbox */
+.header--right {
+	display: flex;
+	flex-direction: row;
+}
+
+/* Pages menu on the right side */
+.header--list {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	align-self: center;
+}
+
+/* Remove ugly ::marker's in pages menu */
+.header--listelement {
+	list-style: none;
+}
