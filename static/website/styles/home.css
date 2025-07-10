@@ -1,23 +1,56 @@
+/* Reset margin and paddings */
 * {
-	margin: 0px;
-	padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 /* Import fonts here */
 @font-face {
-	font-family: "Orbitron-Bold";
-	src: url("../fonts/Orbitron-Bold.ttf") format("truetype");
+    font-family: "Orbitron-Bold";
+    src: url("../fonts/Orbitron-Bold.ttf") format("truetype");
 }
 
 /* Define colors here */
 :root {
-	--orange: #f26822;
-	--dark-grey: #1c1c1c;
-	--lightgray: #cccccc;
-	--white: #ffffff;
+    --orange: #f26822;
+    --dark-grey: #1c1c1c;
+    --lightgray: #cccccc;
+    --white: #ffffff;
 }
 
-/* Page background color */
+html {
+    height: 100%;
+}
+
 .home--mainbody {
-	background-color: var(--dark-grey);
+    background-color: var(--dark-grey);
+}
+
+.home--header {
+    display: flex;
+    flex-direction: row;
+}
+
+.header--list {
+    display: flex;
+    flex-direction: row;
+}
+
+.header--listelement {
+	list-style: none;
+}
+
+.footer--text {
+    text-align: center;
+    font-family: "Orbitron-Bold";
+}
+
+.header--title {
+    color: var(--orange);
+    font-family: "Orbitron-Bold";
+}
+
+.home--footer {
+    position: fixed;
+    bottom: 0px;
 }
