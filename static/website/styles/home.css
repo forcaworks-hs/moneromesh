@@ -17,6 +17,10 @@
 	--white: #ffffff;
 }
 
+html {
+    height: 100%;
+}
+
 /* Page background color */
 .home--mainbody {
 	background-color: var(--dark-grey);
@@ -31,6 +35,7 @@
 	padding-bottom: 10px;
 	padding-top: 5px;
 	font-family: "Orbitron-Bold";
+	text-align: center;
 }
 .header--list {
 	display: flex;
@@ -51,4 +56,99 @@
 .header--title {
 	color: var(--orange);
 	font-family: "Orbitron-Bold";
+}
+
+footer.home--footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+	margin-bottom: 10px;
+}
+
+.header--logo {
+	width: 40px;
+	height: auto;
+	
+}* {
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Import fonts here */
+@font-face {
+	font-family: "Orbitron-Bold";
+	src: url("../fonts/Orbitron-Bold.ttf") format("truetype");
+}
+
+/* Define colors here */
+:root {
+	--orange: #f26822;
+	--dark-grey: #1c1c1c;
+	--lightgray: #cccccc;
+	--white: #ffffff;
+}
+
+html {
+    height: 100%;
+}
+
+/* Page background color */
+.home--mainbody {
+	background-color: var(--dark-grey);
+	padding-top: 10px;
+	font-family: "Orbitron-Bold";
+}
+
+/* Header styles */
+.home--header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	font-family: "Orbitron-Bold";
+	text-align: center;
+}
+
+/* Header elements */
+.header--list {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	padding: 10px;
+}
+
+/* Header list items */
+.header--listelement {
+	list-style: none;
+	display: flex;
+}
+
+/* Footer styles*/
+.footer--text {
+	text-align: center;
+	padding-top: 10px;
+	color: var(--lightgray);
+	font-family: "Orbitron-Bold";
+}
+
+/* Header title styles */
+.header--title {
+	color: var(--orange);
+	font-family: "Orbitron-Bold";
+}
+
+/* Footer styles */
+.home--footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+	margin-bottom: 10px;
+}
+
+/* Header logo styles */
+.header--logo {
+	width: 40px;
+	height: auto;
+	margin:10px;
 }
