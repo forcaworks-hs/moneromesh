@@ -3,3 +3,10 @@
     text-align: center;
     margin-top: 10px;
 }
+
+.footer--text {
+    text-align: center;
+    margin-top: 10px;
+    color: var(--lightgray);
+    font-family: "Orbitron-Bold";
+}

@@ -14,6 +14,8 @@
 .header--title {
 	align-self: center;
 	margin-left: 25px;
+	color: var(--orange);
+	font-family: "Orbitron-Bold";
 }
 
 /* Make the right side a row flexbox */
@@ -28,6 +30,7 @@
 	flex-direction: row;
 	gap: 20px;
 	align-self: center;
+	font-family: "Orbitron-Bold";
 }
 
 /* Remove ugly ::marker's in pages menu */
