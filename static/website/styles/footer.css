@@ -1,9 +1,4 @@
-/* Align horizontally the footer text to the center */
-.footer--text {
-    text-align: center;
-    margin-top: 10px;
-}
-
+/* Align horizontally the footer text to the center and font for its text*/
 .footer--text {
     text-align: center;
     margin-top: 10px;
