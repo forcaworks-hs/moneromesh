@@ -59,14 +59,21 @@ router.get('/monerod', async (req: Request, res: Response) => {
 // Get p2pool stats
 router.get('/p2pool', async (req: Request, res: Response) => {
   try {
-    const stats = await statsService.getP2PoolStats();
+    const response = await axios.get(statsInfoApiUrl);
+    const stats : P2PoolStats = {
+     ...response.data.pool_statistics
+    };
+    console.log("stats ===>", stats);
     res.json({
       success: true,
       data: stats
     });
-  } catch (error) {
-    console.error('Failed to fetch p2pool stats:', error);
-    throw createError('Failed to fetch p2pool stats', 500);
+  } catch (err) {
+    res.json({
+      success: false,
+      error: "Getting all statistics error",
+      details: (err instanceof Error ? err.message : String(err))
+    });
   }
 });
 
