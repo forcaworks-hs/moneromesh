@@ -129,4 +129,4 @@ The project uses TypeScript with strict type checking. Make sure to:
 
 ## License
 
-ISC License - see LICENSE file for details
+BSD 3-Clause License - see LICENSE file for details
