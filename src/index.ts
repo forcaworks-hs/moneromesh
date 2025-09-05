@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { errorHandler } from './middleware/errorHandler';
 import { apiRoutes } from './routes';
 import config from './config';
+import axios from 'axios';
 
 // Load environment variables
 dotenv.config();
@@ -42,10 +43,11 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔗 API endpoints: http://localhost:${PORT}/api`);
+
 });
 
 export default app;

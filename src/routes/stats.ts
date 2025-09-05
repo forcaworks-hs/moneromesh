@@ -1,21 +1,44 @@
 import { Router, Request, Response } from 'express';
 import { createError } from '../middleware/errorHandler';
 import { StatsService } from '../services/statsService';
+import axios from 'axios';
+import { statsInfoApiUrl } from '../config/index'
 
 const router = Router();
 const statsService = new StatsService();
 
+export interface P2PoolStats {
+  hashRate: number,
+  miners: number,
+  totalHashes : number,
+  lastBlockFoundTime : number,
+  lastBlockFound: number,
+  totalBlocksFound : number,
+  pplnsWeight : number,
+  pplnsWindowSize : number,
+  sidechainDifficulty : number,
+  sidechainHeight : number
+}
+
+
 // Get all stats
 router.get('/', async (req: Request, res: Response) => {
   try {
-    const stats = await statsService.getAllStats();
+    const response = await axios.get(statsInfoApiUrl);
+    const stats : P2PoolStats = {
+     ...response.data.pool_statistics
+    };
+    console.log("stats ===>", stats);
     res.json({
       success: true,
       data: stats
     });
-  } catch (error) {
-    console.error('Failed to fetch all stats:', error);
-    throw createError('Failed to fetch stats', 500);
+  } catch (err) {
+    res.json({
+      success: false,
+      error: "Getting all statistics error",
+      details: (err instanceof Error ? err.message : String(err))
+    });
   }
 });
 

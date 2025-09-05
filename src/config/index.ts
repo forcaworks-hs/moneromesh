@@ -38,4 +38,6 @@ export const config: Config = {
   },
 };
 
+export const statsInfoApiUrl : string = "https://p2pool.io/mini/api/pool/stats";
+
 export default config;
