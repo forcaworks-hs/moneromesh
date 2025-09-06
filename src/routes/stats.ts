@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { createError } from '../middleware/errorHandler';
-import { StatsService } from '../services/statsService';
+import { getNetworkHashrate, StatsService } from '../services/statsService';
 import axios from 'axios';
 import { statsInfoApiUrl } from '../config/index'
 
@@ -130,6 +130,29 @@ router.post('/cache/clear', (req: Request, res: Response) => {
   } catch (error) {
     console.error('Failed to clear cache:', error);
     throw createError('Failed to clear cache', 500);
+  }
+});
+
+// Calculate network hashrate
+router.get('/network-hashrate', async (req: Request, res: Response) => {
+  try {
+    const blockCount = parseInt(req.query.blocks as string) || 10;
+    const hashrateData = await getNetworkHashrate();
+    
+    res.json({
+      success: true,
+      data: {
+        hashRate : hashrateData,
+        timestamp: new Date().toISOString()
+      }
+    });
+  } catch (error) {
+    console.error('Failed to calculate network hashrate:', error);
+    res.json({
+      success: false,
+      error: 'Failed to calculate network hashrate',
+      details: error instanceof Error ? error.message : String(error)
+    });
   }
 });
 

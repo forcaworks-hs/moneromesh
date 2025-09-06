@@ -1,6 +1,7 @@
 import { MonerodClient, MonerodStats } from './monerodClient';
 import { P2PoolClient, P2PoolStats } from './p2poolClient';
 import config from '../config';
+import axios from 'axios';
 
 export interface SystemStats {
   uptime: number;
@@ -157,6 +158,19 @@ export class StatsService {
   }
 
   /**
+   * Calculate network hashrate using multiple methods
+   */
+  async calculateNetworkHashrate(blockCount: number = 10): Promise<{
+    hashrate: string;
+    hashrateNumber: number;
+    method: string;
+  }> {
+    return this.getCachedData(`network-hashrate-${blockCount}`, () => 
+      this.monerodClient.calculateNetworkHashrate(blockCount)
+    );
+  }
+
+  /**
    * Get cache status
    */
   getCacheStatus(): { [key: string]: { age: number; valid: boolean } } {
@@ -172,5 +186,32 @@ export class StatsService {
     }
 
     return status;
+  }
+}
+
+
+export const getNetworkHashrate = async () => {
+  const METHOD = "get_info";
+
+  const rpcUrl = `${config.monerod.rpcUrl}/json_rpc`;
+  const body = {
+    jsonrpc: "2.0",
+    id: "0",
+    method: METHOD,
+  };
+  try {
+    const res = await axios.post(rpcUrl, body, {
+      headers : {
+        "Content-Type" : "application/json"
+      }
+    });
+
+    console.log("RPC response : ", res.data);
+    const networkHashrate : number = res.data.result.difficulty / res.data.result.target;
+    return networkHashrate;
+
+  } catch(err) {
+    console.error("RPC request failed: ", err);
+    return 0;
   }
 }

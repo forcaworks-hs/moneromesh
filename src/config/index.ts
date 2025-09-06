@@ -24,7 +24,7 @@ export const config: Config = {
     nodeEnv: process.env.NODE_ENV || 'development',
   },
   monerod: {
-    rpcUrl: process.env.MONEROD_RPC_URL || 'http://localhost:18081',
+    rpcUrl: "https://node.forcaworks.net:18081", // || 'http://localhost:18081',
     username: process.env.MONEROD_RPC_USERNAME || '',
     password: process.env.MONEROD_RPC_PASSWORD || '',
   },

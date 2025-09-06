@@ -87,6 +87,7 @@ Make sure both services are running and accessible before starting the backend.
 - `GET /api/stats/monerod` - Get Monero daemon stats (block height, network hashrate, difficulty, etc.)
 - `GET /api/stats/p2pool` - Get P2Pool stats (pool hashrate, miners, workers, shares, etc.)
 - `GET /api/stats/system` - Get system stats (uptime, memory, CPU usage)
+- `GET /api/stats/network-hashrate` - Calculate network hashrate using multiple methods
 - `GET /api/stats/connections` - Test connections to Monerod and P2Pool
 - `GET /api/stats/cache` - Get cache status
 - `POST /api/stats/cache/clear` - Clear statistics cache

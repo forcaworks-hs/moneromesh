@@ -70,7 +70,7 @@ export class MonerodClient {
   }
 
   /**
-   * Get network hashrate
+   * Get network hashrate (basic calculation from difficulty)
    */
   async getNetworkHashrate(): Promise<string> {
     try {
@@ -83,6 +83,115 @@ export class MonerodClient {
       console.error('Failed to get network hashrate:', error);
       return '0 H/s';
     }
+  }
+
+  /**
+   * Calculate network hashrate from multiple blocks (more accurate)
+   */
+  async calculateNetworkHashrate(blockCount: number = 10): Promise<{
+    hashrate: string;
+    hashrateNumber: number;
+    method: string;
+  }> {
+    try {
+      const currentHeight = await this.getBlockHeight();
+      const blocks = [];
+      
+      // Get last N blocks
+      for (let i = 0; i < blockCount; i++) {
+        const height = currentHeight - i - 1;
+        if (height < 0) break;
+        
+        const block = await this.rpcCall('get_block', { height });
+        blocks.push({
+          height: block.block_header.height,
+          timestamp: block.block_header.timestamp,
+          difficulty: block.block_header.difficulty
+        });
+      }
+
+      if (blocks.length < 2) {
+        throw new Error('Not enough blocks for calculation');
+      }
+
+      // Calculate hashrate using different methods
+      const methods = {
+        simple: this.calculateSimpleHashrate(blocks),
+        weighted: this.calculateWeightedHashrate(blocks),
+        timeBased: this.calculateTimeBasedHashrate(blocks)
+      };
+
+      // Use weighted average as it's most accurate
+      const hashrateNumber = methods.weighted;
+      
+      return {
+        hashrate: this.formatHashrate(hashrateNumber),
+        hashrateNumber,
+        method: 'weighted_average'
+      };
+    } catch (error) {
+      console.error('Failed to calculate network hashrate:', error);
+      // Fallback to simple difficulty-based calculation
+      const difficulty = await this.getDifficulty();
+      const hashrateNumber = difficulty / 120;
+      return {
+        hashrate: this.formatHashrate(hashrateNumber),
+        hashrateNumber,
+        method: 'difficulty_fallback'
+      };
+    }
+  }
+
+  /**
+   * Simple hashrate calculation (difficulty / target_time)
+   */
+  private calculateSimpleHashrate(blocks: any[]): number {
+    const latestBlock = blocks[0];
+    return latestBlock.difficulty / 120; // 120 seconds target
+  }
+
+  /**
+   * Weighted hashrate calculation (more accurate)
+   */
+  private calculateWeightedHashrate(blocks: any[]): number {
+    if (blocks.length < 2) return 0;
+
+    let totalWeightedHashrate = 0;
+    let totalWeight = 0;
+
+    for (let i = 0; i < blocks.length - 1; i++) {
+      const currentBlock = blocks[i];
+      const previousBlock = blocks[i + 1];
+      
+      const timeDiff = currentBlock.timestamp - previousBlock.timestamp;
+      if (timeDiff <= 0) continue;
+
+      const weight = 1 / (i + 1); // More weight to recent blocks
+      const hashrate = currentBlock.difficulty / timeDiff;
+      
+      totalWeightedHashrate += hashrate * weight;
+      totalWeight += weight;
+    }
+
+    return totalWeight > 0 ? totalWeightedHashrate / totalWeight : 0;
+  }
+
+  /**
+   * Time-based hashrate calculation
+   */
+  private calculateTimeBasedHashrate(blocks: any[]): number {
+    if (blocks.length < 2) return 0;
+
+    const firstBlock = blocks[blocks.length - 1];
+    const lastBlock = blocks[0];
+    
+    const timeDiff = lastBlock.timestamp - firstBlock.timestamp;
+    if (timeDiff <= 0) return 0;
+
+    // Average difficulty over the time period
+    const avgDifficulty = blocks.reduce((sum, block) => sum + block.difficulty, 0) / blocks.length;
+    
+    return avgDifficulty / timeDiff;
   }
 
   /**
