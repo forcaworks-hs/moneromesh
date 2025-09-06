@@ -49,28 +49,28 @@ app.listen(PORT, async () => {
   console.log(`🔗 API endpoints: http://localhost:${PORT}/api`);
 
 
-  const METHOD = "get_info";
-  const PARAMS = { height : 912345};
+  // const METHOD = "get_info";
+  // const PARAMS = { height : 912345};
 
-  const rpcUrl = `${config.monerod.rpcUrl}/json_rpc`;
-  const body = {
-    jsonrpc: "2.0",
-    id: "0",
-    method: METHOD,
-    // params: PARAMS,
-  };
-  try {
-    const res = await axios.post(rpcUrl, body, {
-      headers : {
-        "Content-Type" : "application/json"
-      }
-    });
+  // const rpcUrl = `${config.monerod.rpcUrl}/json_rpc`;
+  // const body = {
+  //   jsonrpc: "2.0",
+  //   id: "0",
+  //   method: METHOD,
+  //   // params: PARAMS,
+  // };
+  // try {
+  //   const res = await axios.post(rpcUrl, body, {
+  //     headers : {
+  //       "Content-Type" : "application/json"
+  //     }
+  //   });
 
-    console.log("RPC response : ", res.data);
+  //   console.log("RPC response : ", res.data);
 
-  } catch(err) {
-    console.error("RPC request failed: ", err);
-  }
+  // } catch(err) {
+  //   console.error("RPC request failed: ", err);
+  // }
 });
 
 export default app;
